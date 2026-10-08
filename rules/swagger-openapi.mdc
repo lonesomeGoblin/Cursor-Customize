@@ -1,0 +1,16 @@
+---
+description: 用户给出 Swagger/OpenAPI 地址与目标文件时生成请求方法封装
+alwaysApply: true
+---
+
+# Swagger / OpenAPI → 请求方法
+
+当输入符合 `文档地址 / 文档部分名 => 目标文件路径`（「/ 部分名」可省略）时执行。
+
+1. **文档地址**：OpenAPI/Swagger 规范 URL。若是 Swagger UI，探测同源 `/openapi.json`、`/v3/api-docs`、`/swagger.json`，禁止把 HTML 当规范。
+2. **部分名**：可选过滤。优先级：tag → path/前缀 → operationId。无法唯一匹配时列出候选。
+3. **目标文件**：写入请求方法源码，不要写入完整规范快照。
+
+与当前工作区 HTTP 封装一致；若有 `src/service/index.js`，用该实例。每个 path×method 导出 camelCase 具名函数。JSDoc 含动词与 path。Path 参数用模板字符串。Query 用 `params`，JSON body 用 `data`。鉴权依赖现有拦截器。
+
+仅在用户明确给出 URL 与目标路径时执行。对话中不要粘贴完整规范 JSON。

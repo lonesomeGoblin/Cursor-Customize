@@ -1,0 +1,31 @@
+---
+description: 输入 cmp 时拉取远程、按 cm 规范提交并推送，且提交不得带 AI 作者标识
+alwaysApply: true
+---
+
+# Shortcut Command: cmp
+
+- 当用户输入内容严格等于 `cmp`（忽略首尾空格）时执行本流程。不得与 `cm` 混淆：`cm` 只生成提交文案，`cmp` 要真正拉远程、提交、推送。
+- 触发 `cmp` 即视为用户明确授权：提交本地变更并 `git push` 到当前分支的跟踪远程。禁止 `--force`、禁止跳过 hooks。
+- 不要修改 git config。Author / Committer 保持仓库里已有的用户身份。
+
+## 执行顺序（必须按步，不得跳步）
+
+1. **拉取远程更新**
+   - 先 `git fetch`，再 `git pull`（优先快进）。
+   - 若工作区改动会挡住拉取：`git stash push -u` → 拉取 → `git stash pop`。
+   - 出现冲突则停止并说明冲突文件，不要强行继续。
+2. **按 `cm` 规则生成 commit message 并提交**
+   - 拉取完成后再看 `git status`、`git diff`（含暂存区）、`git log`。
+   - 严格按 `cm`：标题 `<type>: <中文简述>`，正文按具体变更分条列出，全文不超过 200 字。提交前按 `cm` 自检。
+   - 文案中不得出现 AI 署名、`Co-authored-by`、`Signed-off-by`、`Made-with` 等作者标识。
+   - 无变更则跳过提交。不要提交密钥类文件。
+   - 用生成的文案执行 `git add` 与 `git commit`（Windows PowerShell 不要用 bash heredoc / `&&`）。
+3. **推送前清除 AI 作者标识（硬闸门）**
+   - 即将推送的提交不得携带任何 AI 作者标识，包括但不限于：Cursor、cursoragent、`cursor.com`、Claude、ChatGPT、Copilot、GPT 出现在 Author、Committer、`Co-authored-by`、`Signed-off-by`、`Made-with` 或提交说明中。
+   - 推送前执行 `git log -1 --format=full`；有上游时再查 `git log --format=full @{u}..HEAD`。
+   - 本次创建且尚未推送的提交若含上述标识：去掉标识后再推送。禁止跳过 hooks。标识已在远程时停止说明，不得对 main/master 强推。
+   - 检查未通过则禁止 `git push`。
+4. **将本地提交推送到远程**
+   - 仅在第 3 步通过后 `git push` 到当前分支已跟踪的 remote。无提交可推则说明即可。
+   - 结束后用中文汇报：拉取结果、提交哈希与提交信息、推送结果，并确认推送的提交没有 AI 作者标识。

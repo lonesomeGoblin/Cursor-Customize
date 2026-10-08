@@ -1,0 +1,16 @@
+---
+description: Git 安全约束：未授权不提交、禁止强推与跳过 hooks
+alwaysApply: true
+---
+
+# Git 安全
+
+- 仅在用户明确要求，或触发 `cmp` 时，才执行 `git commit` / `git push`
+- 禁止 `--force`、禁止跳过 hooks（`--no-verify`、`--no-gpg-sign`）
+- 禁止 `git rebase -i` / `git add -i`（需要交互输入）
+- 不要修改 git config
+- 不要提交密钥类文件（`.env`、credentials 等）
+- 不要对 main/master 强推；用户要求时先警告
+- 提交失败被 hook 拒绝时：修问题后打 **新提交**，不要 amend
+- Windows PowerShell 下 `git commit` 不要用 bash heredoc / `&&`
+- 提交说明语言与格式遵循 `cm` 规则

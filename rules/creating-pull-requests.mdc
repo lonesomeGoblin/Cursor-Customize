@@ -1,0 +1,17 @@
+---
+description: 用户要求创建 PR 时用 gh 按现有风格推送并开单
+alwaysApply: true
+---
+
+# 创建 Pull Request
+
+用户要求创建 PR 时，用 Shell 跑 `gh`。先并行了解相对主分支的状态：
+
+- `git status`（含未跟踪文件）
+- `git diff`（暂存与未暂存）
+- 当前分支是否跟踪远程、是否落后
+- `git log` 与 `git diff [base-branch]...HEAD`（全部相关提交，不只最新一条）
+
+然后：需要时建分支 → 需要时 `git push -u` → `gh pr create`。不要改 git config。未明确要求不要 push。
+
+Windows PowerShell 不要用 bash heredoc / `&&`。完成后返回 PR URL。

@@ -1,0 +1,30 @@
+---
+description: 动手前匹配当前会话里的 skills，并按全文用满其流程、检查项与指定做法
+alwaysApply: true
+---
+
+# 必须充分利用当前 skills 的能力
+
+动手前先看本会话「当前可用 skills」。只要有 skill 可能适用，先读全文再行动，并按它的能力做完，不要只看标题或凭记忆替代。
+
+## 什么叫用满
+
+- 读全文，并读它点名的引用、子规则、checklist
+- skill 要求的步骤、工具、检查项都要执行；有 checklist 就逐项做
+- 用 skill 指定的做法，不要另起一套更弱的流程
+- 多个 skill 同时适用时全部读取：流程类先于实现类
+
+## 执行
+
+1. 先宣布：Using [skill] to [目的]
+2. 按 skill 逐步做完，再声称完成
+3. 任务再小也不跳过；确认没有当前 skill 适用时，才可以不用
+
+## 示例
+
+修一个 Vue 表单 bug，当前有 `systematic-debugging` 与 `vue-best-practices`：
+
+```text
+不符合：凭经验直接改组件
+符合：先读这两个 skill 全文；按调试流程定位，再按 Vue skill 的写法修改，并完成它要求的检查
+```

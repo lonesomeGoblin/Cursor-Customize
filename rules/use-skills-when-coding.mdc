@@ -1,0 +1,37 @@
+---
+description: 修改代码前必须充分读取并遵循相关 skills，禁止凭记忆跳过
+alwaysApply: true
+---
+
+# 改代码必须充分使用 skills
+
+修改、新增、修复任何代码前：先判断任务类型，**读取并遵循**对应 skill 的全文（含其引用的子规则），不得只凭记忆或只读标题。
+
+## 流程优先（先定做法，再写代码）
+
+- 新功能 / 改交互 / 创造性改动 → `superpowers:brainstorming`，复杂多步再 `writing-plans`
+- 报错、异常行为、测试失败 → `superpowers:systematic-debugging`，再叠加领域 skill
+- 实现功能或修 bug → 先考虑 `test-driven-development`
+- 声称完成 / 提交 / 出 PR 前 → `verification-before-completion`
+
+## 领域 skill（按改动类型叠加，可同时用多个）
+
+- 任意 Vue / `.vue` → `vue` + `vue-best-practices`（默认 Composition API + `<script setup>`）
+- Options API 文件 → 额外 `vue-options-api-best-practices`
+- JSX → `vue-jsx-best-practices`
+- 路由 → `vue-router-best-practices`
+- Pinia → `pinia` + `vue-pinia-best-practices` + `pinia-best-practices`
+- VueUse → `vueuse-functions` + `vueuse-best-practices`
+- 可复用 composable → `create-adaptable-composable`
+- Vue 运行时问题 → `vue-debug-guides`
+- UnoCSS / 原子化 class → `unocss`
+- Vite 配置 / 插件 / SSR → `vite`
+- 测试 → `vue-testing-best-practices` + `vitest`
+- UI / 布局 / 视觉 / CSS → `frontend-design` + `ui-ux-pro-max` + `web-design-guidelines` + `antfu-design`
+- pnpm → `pnpm`；Nuxt → `nuxt`；Nitro → `nitro`
+
+## 执行要求
+
+1. 先宣布：Using [skill] to [目的]，再按 skill 逐步执行。
+2. 多个 skill 同时适用时全部读取；流程 skill 先于实现 skill。
+3. 不要因为「改动很小」而跳过；skill 不适用时才可不用。
