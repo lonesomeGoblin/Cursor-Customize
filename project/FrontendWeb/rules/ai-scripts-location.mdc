@@ -1,0 +1,13 @@
+---
+description: AI 生成的脚本一律放在 scripts/，不要散落到仓库其他位置
+alwaysApply: true
+---
+
+# AI 脚本放在 scripts/
+
+代理为排查、迁移、对照或一次性检查而新写的脚本，全部放在 `scripts/`。
+
+- 路径：`scripts/<简短文件名>.mjs`（或该目录下已有同类扩展名）。
+- 不要写到仓库根目录、`src/`、`test/` 或系统临时目录。
+- 任务结束后，一次性脚本默认删除；用户要求保留时再留在 `scripts/`。
+- 已有维护脚本（如 `scripts/build-world-countries.mjs`）继续放在这里，不要另起目录。
